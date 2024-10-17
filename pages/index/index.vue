@@ -1,9 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+		<up-button type="primary" :plain="true" :hairline="true" text="细边"></up-button>
 	</view>
 </template>
 
