@@ -1,5 +1,5 @@
-# uniapp-android
-安卓APP
+# uniapp-android(安卓APP)
+
 1.请使用HbuilderX 编辑器开发，下载地址：https://www.dcloud.io/hbuilderx.html?source=javascriptc.com ;
 2.UI组件库使用 uview-plus 地址： https://uview-plus.jiangruyi.com/components/intro.html;
 3.当前项目为vue3的版本;
