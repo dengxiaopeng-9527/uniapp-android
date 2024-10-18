@@ -1,23 +1,17 @@
 <template>
 	<view class="content">
-		<up-button type="primary" :plain="true" :hairline="true" text="细边"></up-button>
+		<up-button @click="getFn()" type="primary" :plain="true" :hairline="true" text="发请求"></up-button>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
+<script setup lang="ts">
+	import api from "../../utils/request/api.js"
+		
+	const getFn = async () => {
 
-		},
-		methods: {
-
-		}
+	 	api.getUserInfo()
 	}
+
 </script>
 
 <style>
