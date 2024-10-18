@@ -4,7 +4,11 @@
 2.UI组件库使用 uview-plus 地址： https://uview-plus.jiangruyi.com/components/intro.html;
 3.当前项目为vue3的版本;
 4.通过点击编辑器头部栏的运行和发行进行“dev开发”和“build打包”;
+
 5.推荐使用`pnpm `;
+
+6.初始化依赖：
+
 ```
 pnpm i
 ```
