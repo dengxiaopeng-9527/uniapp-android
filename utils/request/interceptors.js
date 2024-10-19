@@ -24,13 +24,13 @@ export const responseInterceptors = (vm) => {
 	 * @param {Object} http 
 	 */
 	http.interceptors.response.use((response) => {
+			console.log("response:", response)
 			const data = response.data
-				
 			if(data.code != 200){
 				toast(data?.message || "请求出错")
 			}
 			
-			return data.data || {}
+			return data || {}
 		},
 		(error) => {
 			// 如果响应失败，根据状态码进行不同的错误处理

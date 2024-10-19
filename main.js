@@ -17,13 +17,13 @@ app.$mount()
 // #ifdef VUE3
 import { createSSRApp } from 'vue';
 import { initRequest } from "./utils/request/index.js"
-
+import store from './store'
 export function createApp() {
 	
   const app = createSSRApp(App)
 	// 引入请求封装
 	initRequest(app);
-	
+	app.use(store)
 	app.use(uviewPlus);
   return {
     app
