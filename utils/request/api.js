@@ -32,7 +32,7 @@ const createRequestFunction = (item) => {
 	};
 };
 
-// 遍历fetchList并为每个元素创建一个请求方法
+// 遍历service并为每个元素创建一个请求方法
 service.forEach(item => {
 	api[item.fetchName] = createRequestFunction(item);
 });
