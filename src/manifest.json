@@ -1,6 +1,6 @@
 {
-    "name" : "uniapp_android",
-    "appid" : "__UNI__7518E68",
+    "name" : "",
+    "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -65,8 +65,8 @@
     "mp-toutiao" : {
         "usingComponents" : true
     },
-    "uniStatistics" : {
-        "enable" : false
+    "uniStatistics": {  
+        "enable": false
     },
     "vueVersion" : "3"
 }

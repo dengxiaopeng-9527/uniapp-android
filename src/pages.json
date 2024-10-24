@@ -1,14 +1,13 @@
 {
 	"easycom": {
 		"autoscan": true,
-		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
 		"custom": {
 			"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
 			"^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
 			"^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
 		}
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/home/index",
 			"style": {
@@ -28,16 +27,15 @@
 			}
 		}
 	],
-
 	"tabBar": {
-		"custom": true,
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/home/index",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/course/index",
-				"text": "课程"
+				"text": "课程学习"
 			},
 			{
 				"pagePath": "pages/my/index",
@@ -50,6 +48,5 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-	},
-	"uniIdRouter": {}
+	}
 }

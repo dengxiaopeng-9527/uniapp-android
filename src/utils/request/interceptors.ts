@@ -3,36 +3,36 @@ import {
 	toast
 } from 'uview-plus';
 
-export const requestInterceptors = (vm) => {
+export const requestInterceptors = (vm: any) => {
 	/**
 	 * 请求拦截
 	 * @param {Object} http
 	 */
 	http.interceptors.request.use(
-		(config) => {
+		(config: any) => {
 			// 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
 			config.data = config.data || {};
 			return config
 		},
-		(config) => Promise.reject(config)
+		(config: any) => Promise.reject(config)
 	)
 }
 
-export const responseInterceptors = (vm) => {
+export const responseInterceptors = (vm: any) => {
 	/**
 	 * 响应拦截
 	 * @param {Object} http 
 	 */
-	http.interceptors.response.use((response) => {
-			console.log("response:", response)
-			const data = response.data
-			if(data.code != 200){
-				toast(data?.message || "请求出错")
-			}
-			
-			return data || {}
-		},
-		(error) => {
+	http.interceptors.response.use((response: any) => {
+		console.log("response:", response)
+		const data = response.data
+		if (data.code != 200) {
+			toast(data?.message || "请求出错")
+		}
+
+		return data || {}
+	},
+		(error: any) => {
 			// 如果响应失败，根据状态码进行不同的错误处理
 			if (error.statusCode) {
 				const statusCode = error.statusCode;

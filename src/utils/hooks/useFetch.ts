@@ -1,3 +1,4 @@
+import type { IUseFetchOptions } from '@/pages/types/service';
 import { ref, watchEffect } from 'vue';
 /**
  * @param {Object} options - 配置选项
@@ -9,7 +10,7 @@ import { ref, watchEffect } from 'vue';
  * @param {Function} [options.onFailed] - 请求失败时的回调函数
  * @returns {Object} 返回一个对象，包含 loading, data, setFetchParams 和 refreshFetch 方法
  */
-export function useFetch(options) {
+export function useFetch(options: IUseFetchOptions) {
   const { 
     interface: fetchFn, 
     initParams = null, 
@@ -23,7 +24,7 @@ export function useFetch(options) {
   const data = ref(initData);
   const params = ref(initParams);
 
-  const setFetchParams = (newParams) => {
+  const setFetchParams = (newParams:any) => {
     params.value = newParams;
   };
 
