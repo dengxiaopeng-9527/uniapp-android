@@ -2,7 +2,7 @@
   <view style="font-size: 24rpx">
     <view>
       <view style="text-align: center"> count--------- {{ count }} </view>
-      <view style="text-align: center"> doubleCount--------- {{ doubleCount }} </view>
+      <view style="text-align: center"> doubleCount--------{{ doubleCount }} </view>
       <up-button
         style="margin-top: 24rpx"
         @click="add"
@@ -13,9 +13,17 @@
       <up-button
         :loading="loading"
         style="margin-top: 24rpx"
-        @click="getuserInfo"
+        @click="getUser"
         type="success"
         text="发起请求"
+      ></up-button>
+
+      <up-button
+        :loading="updateLoading"
+        style="margin-top: 24rpx"
+        @click="postUser"
+        type="success"
+        text="发起请求POST"
       ></up-button>
     </view>
   </view>
@@ -25,8 +33,9 @@
 import { useStore } from "vuex";
 import { computed } from "vue";
 
-import api from "@/utils/request/api";
-import { useFetch } from "../../utils/hooks/useFetch.js";
+import { useFetchQuery } from "@/utils/hooks/useFetchQuery";
+import { getUserInfo, updateInfo } from "@/service/home";
+import { useFetchMutation } from "@/utils/hooks/useFetchMutation";
 
 const store = useStore();
 const count = computed(() => store.state.home.count);
@@ -36,28 +45,19 @@ const add = () => {
   store.dispatch("home/add");
 };
 
-const {
-  loading,
-  data,
-  setFetchParams, // 重新设置参数，设置后自动发起请求
-  // refreshFetch
-} = useFetch({
-  interface: api.getUserInfo, // 请求的方法
-  initParams: null,
-  initData: {},
-  notFetch: (params: any) => !params,
-  onSuccess: (data: any) => {
-    console.log("data==>", data);
-  },
-  onFailed: (err: any) => {
-    console.log("errData==>", err);
-  },
+const { data, error, loading, fetchData } = useFetchQuery({
+  queryFn: getUserInfo
 });
 
-const getuserInfo = async () => {
-  console.log("loading===>", loading);
-  setFetchParams({ id: 2 });
+const getUser = async () => {
+  fetchData({ id: 2 });
 };
+
+const postUser = async () => {
+  mutate({ id: 2, name: "张三" });
+};
+
+const { mutate, loading: updateLoading } = useFetchMutation(updateInfo);
 </script>
 
 <style></style>

@@ -1,22 +1,13 @@
-import type { EndpointConfig } from "@/pages/types/service";
+import { http } from 'uview-plus';
 
-const home: EndpointConfig[] = [
-	{
-		url: "/user",
-		method: "GET",
-		fetchName: "getUserInfo",
-		
-	},
-	{
-		url: "/api/updateUserInfo",
-		method: "POST",
-		fetchName: "updateUserInfo",
-		paramsAddUrlSearch: true,
-		headers: {
-			'Content-Type': 'application/json',
-			'Another-Header': 'another-value'
-		}
-	}
-]
+export function getUserInfo(paylod: IUserParams): Promise<IUserInfo> {
+	return http.get("/user", {
+		params: paylod,
+	});
+}
 
-export default home
+export function updateInfo(paylod: IUserInfo): Promise<IUserInfo> {
+	return http.post("/user/info", {
+		data: paylod
+	});
+}

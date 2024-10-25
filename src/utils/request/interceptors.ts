@@ -28,9 +28,9 @@ export const responseInterceptors = (vm: any) => {
 		const data = response.data
 		if (data.code != 200) {
 			toast(data?.message || "请求出错")
+			return data;
 		}
-
-		return data || {}
+		return data.data || {}
 	},
 		(error: any) => {
 			// 如果响应失败，根据状态码进行不同的错误处理
