@@ -1,17 +1,16 @@
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, onMounted } from 'vue';
+
 interface IUseFetchQuery<T, K> {
   queryFn: (paylod: T) => Promise<K>;
-  onSuccess?: (data: K) => void;
-  onFailed?: (err: { code: number, data: K }) => void;
   initToFetch?: boolean;
+  initParams?: T
 }
 
 export function useFetchQuery<T, K>(options: IUseFetchQuery<T, K>) {
   const {
     queryFn,
-    onSuccess,
-    onFailed,
-    initToFetch = false
+    initToFetch = true,
+    initParams
   } = options
 
   const loading = ref<boolean>(false);
@@ -21,18 +20,24 @@ export function useFetchQuery<T, K>(options: IUseFetchQuery<T, K>) {
   const fetchData = async (paylod: T) => {
     try {
       loading.value = true
-      const res = await queryFn(paylod);
-      onSuccess && onSuccess(res);
-      data.value = res;
-      return res;
+      // @ts-ignore
+      const res: { data: K, code: number } = await queryFn(paylod);
+      if (res.code == 200) {
+        data.value = res.data;
+        return res;
+      } else {
+        error.value = res
+      }
     } catch (error: any) {
       error.value = error
-      onFailed && onFailed(error)
     } finally {
       loading.value = false;
     }
   };
 
+  onMounted(() => {
+    if (initToFetch) fetchData(initParams || {} as T)
+  })
 
   return {
     loading,

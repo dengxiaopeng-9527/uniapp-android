@@ -30,7 +30,7 @@ export const responseInterceptors = (vm: any) => {
 			toast(data?.message || "请求出错")
 			return data;
 		}
-		return data.data || {}
+		return data || {}
 	},
 		(error: any) => {
 			// 如果响应失败，根据状态码进行不同的错误处理

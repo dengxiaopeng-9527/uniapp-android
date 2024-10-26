@@ -25,6 +25,8 @@
         type="success"
         text="发起请求POST"
       ></up-button>
+
+      
     </view>
   </view>
 </template>
@@ -45,19 +47,24 @@ const add = () => {
   store.dispatch("home/add");
 };
 
-const { data, error, loading, fetchData } = useFetchQuery({
-  queryFn: getUserInfo
+const { data, error, loading, fetchData } = useFetchQuery<IUserParams, IUserInfo>({
+  queryFn: getUserInfo,
+  initParams: { id: 3 },
+  initToFetch: false,
 });
 
 const getUser = async () => {
-  fetchData({ id: 2 });
+  fetchData({ id: 2 }).then((re) => {
+    console.log(re, "111");
+  });
 };
 
+const { mutate, loading: updateLoading } = useFetchMutation<IUserInfo, IUserInfo>(
+  updateInfo
+);
 const postUser = async () => {
   mutate({ id: 2, name: "张三" });
 };
-
-const { mutate, loading: updateLoading } = useFetchMutation(updateInfo);
 </script>
 
 <style></style>
