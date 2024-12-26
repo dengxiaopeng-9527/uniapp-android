@@ -30,4 +30,4 @@ pnpm run dev
 pnpm run build:app-android
 ```
 
-11. 生成本地文件build后，需要下载 Android Studio ，新建一个空白的安卓项目，导入build中的文件，生成apk包
+11. 生成本地文件build后，需要下载 Android Studio ，新建一个空白的安卓项目，导入build中的文件，生成apk包.
